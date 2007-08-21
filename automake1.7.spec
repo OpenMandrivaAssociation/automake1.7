@@ -24,7 +24,7 @@ BuildRequires:	autoconf2.5 >= 1:2.59-4mdk
 BuildRequires:	texinfo
 Conflicts:	automake1.5
 Conflicts:	automake < 1.4-22.p6.mdk
-Requires(post):	info-install /usr/sbin/update-alternatives
+Requires(post):	info-install update-alternatives
 Requires(preun):	info-install
 
 # for tests

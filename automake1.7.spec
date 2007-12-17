@@ -16,7 +16,6 @@ Source:		ftp://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
 Patch0:		automake-1.7.9-infofiles.patch
 Patch1:		automake-1.7.9-new-autoconf-and-gettext.patch
 URL:		http://sources.redhat.com/automake/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch:	noarch
 
 Requires:	autoconf2.5 >= 1:2.54

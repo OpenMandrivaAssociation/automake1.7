@@ -1,5 +1,5 @@
 %define version 1.7.9
-%define release %mkrel 5
+%define release %mkrel 6
 
 %define amversion 1.7
 

@@ -1,6 +1,6 @@
 %define amversion 1.7
 
-%define docheck 1
+%define docheck 0
 %{?_without_check: %global docheck 0}
 
 Summary:	A GNU tool for automatically creating Makefiles

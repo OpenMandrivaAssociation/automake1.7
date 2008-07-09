@@ -53,7 +53,6 @@ Autoconf package.
 %make
 
 %if %docheck
-%check
 # (Abel) reqd2.test tries to make sure automake won't work if ltmain.sh
 # is not present. But automake behavior changed, now it can handle missing
 # libtool file as well, so this test is bogus.

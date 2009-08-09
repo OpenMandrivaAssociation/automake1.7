@@ -6,7 +6,7 @@
 Summary:	A GNU tool for automatically creating Makefiles
 Name:		automake%{amversion}
 Version:	1.7.9
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPL
 Group:		Development/Other
 URL:		http://sources.redhat.com/automake/

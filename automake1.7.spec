@@ -6,7 +6,7 @@
 Summary:	A GNU tool for automatically creating Makefiles
 Name:		automake%{amversion}
 Version:	1.7.9
-Release:	%mkrel 12
+Release:	13
 License:	GPL
 Group:		Development/Other
 URL:		http://sources.redhat.com/automake/
@@ -15,15 +15,13 @@ Patch0:		automake-1.7.9-infofiles.patch
 Patch1:		automake-1.7.9-new-autoconf-and-gettext.patch
 Patch2:		automake-1.7.9-CVE-2009-4029.patch
 BuildArch:	noarch
-Requires:	autoconf2.5 >= 1:2.54
-BuildRequires:	autoconf2.5 >= 1:2.59-4mdk
+Requires:	autoconf2.5
+BuildRequires:	autoconf2.5
 BuildRequires:	texinfo
 Conflicts:	automake1.5
-Conflicts:	automake < 1.4-22.p6.mdk
-Requires(post): info-install update-alternatives
-Requires(preun): info-install
+Requires(post):	update-alternatives
 # for tests
-%if %docheck
+%if %{docheck}
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	tetex-latex
@@ -32,7 +30,6 @@ BuildRequires:	dejagnu
 BuildRequires:	gcc-java
 BuildRequires:	python
 %endif
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Automake is a tool for automatically generating Makefiles compliant with
@@ -54,7 +51,7 @@ Autoconf package.
 %configure2_5x
 %make
 
-%if %docheck
+%if %{docheck}
 # (Abel) reqd2.test tries to make sure automake won't work if ltmain.sh
 # is not present. But automake behavior changed, now it can handle missing
 # libtool file as well, so this test is bogus.
@@ -70,13 +67,11 @@ make check	# VERBOSE=1
 %endif
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
-rm -f %{buildroot}/%{_bindir}/{automake,aclocal}
+rm -f %{buildroot}%{_bindir}/{automake,aclocal}
 
-pushd %{buildroot}/%{_infodir}
+pushd %{buildroot}%{_infodir}
 for i in *.info*; do
   mv $i %{name}${i#automake}
 done
@@ -84,18 +79,10 @@ popd
 
 mkdir -p %{buildroot}%{_datadir}/aclocal
 
-%clean
-rm -rf %{buildroot}
-
 %post
-%_install_info %name.info
 update-alternatives --remove automake %{_bindir}/automake-%{amversion}
 
-%preun
-%_remove_install_info %name.info
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README THANKS TODO
 %{_bindir}/*
 %{_datadir}/automake*

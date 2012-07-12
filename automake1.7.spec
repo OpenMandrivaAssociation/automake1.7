@@ -6,7 +6,7 @@
 Summary:	A GNU tool for automatically creating Makefiles
 Name:		automake%{amversion}
 Version:	1.7.9
-Release:	13
+Release:	14
 License:	GPL
 Group:		Development/Other
 URL:		http://sources.redhat.com/automake/
@@ -14,6 +14,7 @@ Source:		ftp://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
 Patch0:		automake-1.7.9-infofiles.patch
 Patch1:		automake-1.7.9-new-autoconf-and-gettext.patch
 Patch2:		automake-1.7.9-CVE-2009-4029.patch
+Patch3:		automake-1.7.9-CVE-2012-3386.diff
 BuildArch:	noarch
 Requires:	autoconf2.5
 BuildRequires:	autoconf2.5
@@ -46,6 +47,7 @@ Autoconf package.
 %patch0 -p0 -b .parallel
 %patch1 -p1 -b .autoconf_gettext
 %patch2 -p1 -b .CVE-2009-4029
+%patch3 -p0 -b .CVE-2012-3386
 
 %build
 %configure2_5x

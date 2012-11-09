@@ -1,0 +1,110 @@
+--- automake-1.7.9/tests/exdir2.test.bak	2007-03-01 17:16:19.503716805 +0100
++++ automake-1.7.9/tests/exdir2.test	2007-03-01 17:16:27.139791723 +0100
+@@ -23,7 +23,7 @@
+ . ./defs || exit 1
+ 
+ cat > Makefile.am << 'EOF'
+-html_DATA = zot.html
++fubar_DATA = zot.html
+ pkgdata_DATA = qbert
+ EOF
+ 
+--- automake-1.7.9/tests/gettext.test.bak	2007-03-01 17:36:33.007612243 +0100
++++ automake-1.7.9/tests/gettext.test	2007-03-01 17:44:31.328295533 +0100
+@@ -27,12 +27,16 @@
+ 
+ cat >>configure.in <<END
+ AM_GNU_GETTEXT
++AM_GNU_GETTEXT_VERSION(0.12.1)
+ AC_OUTPUT
+ END
+ 
+ : >Makefile.am
+ mkdir po intl
+ 
++autopoint
++
++ACLOCAL=$(echo "$ACLOCAL" | sed -e 's#/usr/share/aclocal#m4 -I /usr/share/aclocal#')
+ $ACLOCAL
+ 
+ # po/ and intl/ are required
+@@ -62,7 +66,7 @@
+ # `SUBDIRS = po intl' isn't required if po/ doesn't exist.
+ # PR/381.
+ 
+-rmdir po
++rm -r po
+ mkdir sub
+ echo 'SUBDIRS = sub' >Makefile.am
+ $AUTOMAKE
+--- automake-1.7.9/tests/gettext2.test.bak	2003-06-04 21:23:28.000000000 +0200
++++ automake-1.7.9/tests/gettext2.test	2007-03-01 17:46:36.525521023 +0100
+@@ -28,12 +28,16 @@
+ 
+ cat >>configure.in <<END
+ AM_GNU_GETTEXT([external])
++AM_GNU_GETTEXT_VERSION(0.12.1)
+ AC_OUTPUT
+ END
+ 
+ : >Makefile.am
+ mkdir foo po
+ 
++autopoint
++
++ACLOCAL=$(echo "$ACLOCAL" | sed -e 's#/usr/share/aclocal#m4 -I /usr/share/aclocal#')
+ $ACLOCAL
+ 
+ # po/ is required, but intl/ isn't.
+--- automake-1.7.9/tests/man2.test.bak	2003-06-04 21:23:28.000000000 +0200
++++ automake-1.7.9/tests/man2.test	2007-03-01 17:49:17.323095647 +0100
+@@ -44,12 +44,12 @@
+ ./configure --prefix=''
+ DESTDIR="`pwd`/_inst" $MAKE -e install
+ 
+-test -f ./_inst/man/man2/foo.2
+-test -f ./_inst/man/man4/foo.4
+-test -f ./_inst/man/man4/bar.4
++test -f ./_inst/share/man/man2/foo.2
++test -f ./_inst/share/man/man4/foo.4
++test -f ./_inst/share/man/man4/bar.4
+ 
+ DESTDIR="`pwd`/_inst" $MAKE -e uninstall
+ 
+-test ! -f ./_inst/man/man2/foo.2
+-test ! -f ./_inst/man/man4/foo.4
+-test ! -f ./_inst/man/man4/bar.4
++test ! -f ./_inst/share/man/man2/foo.2
++test ! -f ./_inst/share/man/man4/foo.4
++test ! -f ./_inst/share/man/man4/bar.4
+--- automake-1.7.9/tests/subcond.test.bak	2003-06-04 21:23:28.000000000 +0200
++++ automake-1.7.9/tests/subcond.test	2007-03-01 17:51:21.540314659 +0100
+@@ -24,6 +24,7 @@
+ 
+ cat >> configure.in << 'END'
+ AM_GNU_GETTEXT
++AM_GNU_GETTEXT_VERSION(0.12.1)
+ AM_CONDITIONAL(MAUDE, true)
+ ALL_LINGUAS=
+ AC_SUBST(ALL_LINGUAS)
+@@ -39,6 +40,9 @@
+ endif
+ END
+ 
++autopoint
++
++ACLOCAL=$(echo "$ACLOCAL" | sed -e 's#/usr/share/aclocal#m4 -I /usr/share/aclocal#')
+ $ACLOCAL || exit 1
+ # Gettext wants config.guess etc.
+ $AUTOMAKE --add-missing
+--- automake-1.7.9/tests/transform.test.bak	2003-06-04 21:23:28.000000000 +0200
++++ automake-1.7.9/tests/transform.test	2007-03-01 17:53:06.101340609 +0100
+@@ -38,7 +38,7 @@
+ test-install: install
+ 	test -f inst/bin/gnu-h$(EXEEXT)
+ 	test -f inst/bin/gnu-h.sh
+-	test -f inst/man/man1/gnu-h.1
++	test -f inst/share/man/man1/gnu-h.1
+ EOF
+ 
+ cat >h.c <<'EOF'

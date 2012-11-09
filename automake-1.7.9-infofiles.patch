@@ -1,0 +1,27 @@
+--- ./automake.texi.gege	2003-07-10 22:30:17.000000000 +0200
++++ ./automake.texi	2003-07-11 11:20:15.000000000 +0200
+@@ -1,7 +1,7 @@
+ \input texinfo   @c -*-texinfo-*-
+ @c %**start of header
+-@setfilename automake.info
+-@settitle automake
++@setfilename automake1.7.info
++@settitle automake1.7
+ @setchapternewpage off
+ @c %**end of header
+ 
+@@ -9,12 +9,12 @@
+ 
+ @dircategory Software development
+ @direntry
+-* automake: (automake).		Making Makefile.in's.
++* automake1.7: (automake1.7).		Making Makefile.in's.
+ @end direntry
+ 
+ @dircategory Individual utilities
+ @direntry
+-* aclocal: (automake)Invoking aclocal.          Generating aclocal.m4.
++* aclocal-1.7: (automake1.7)Invoking aclocal.          Generating aclocal.m4.
+ @end direntry
+ 
+ @ifinfo

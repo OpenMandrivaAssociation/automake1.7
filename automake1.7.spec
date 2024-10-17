@@ -9,7 +9,7 @@ Version:	1.7.9
 Release:	24
 License:	GPL
 Group:		Development/Other
-URL:		http://sources.redhat.com/automake/
+URL:		https://sources.redhat.com/automake/
 Source0:	ftp://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
 Source1:	automake1.7.rpmlintrc
 Patch0:		automake-1.7.9-infofiles.patch

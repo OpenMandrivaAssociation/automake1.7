@@ -18,6 +18,10 @@ Patch2:		automake-1.7.9-CVE-2009-4029.patch
 Patch3:		automake-1.7.9-CVE-2012-3386.diff
 BuildArch:	noarch
 Requires:	autoconf2.5 >= 1:2.54
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	autoconf2.5 >= 1:2.59-4mdk
 BuildRequires:	texinfo
 Conflicts:	automake1.5
